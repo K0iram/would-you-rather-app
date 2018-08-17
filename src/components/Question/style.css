@@ -1,0 +1,25 @@
+.question {
+ padding: 20px 0;
+ margin-bottom: 20px;
+ display: flex;
+ justify-content: space-between;
+ max-width: 800px;
+ width: 100%;
+ margin: 0 auto;
+}
+
+.question__avatar {
+  width: 50px;
+  border: 1px solid;
+  border-radius: 50%;
+}
+
+.question__author {
+  display: flex;
+  flex-direction: column;
+  height: 50px;
+}
+
+.question__author h3 {
+  margin: 0;
+}

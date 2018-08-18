@@ -31,6 +31,17 @@ let users = {
       "6ni6ok3ym7mf1p33lnez": 'optionOne'
     },
     questions: ['6ni6ok3ym7mf1p33lnez', 'xj352vofupe1dqz9emx13r'],
+  },
+  koiram: {
+    id: 'koiram',
+    name: 'Mario Kennedy',
+    avatarURL: 'https://s3.amazonaws.com/mariosbucket/Udacity_Avatars/man.png',
+    answers: {
+      "xj352vofupe1dqz9emx13r": 'optionOne',
+      "vthrdm985a262al8qx3do": 'optionTwo',
+      "6ni6ok3ym7mf1p33lnez": 'optionOne'
+    },
+    questions: ['6ni6ok3ym7mf1p33lnez', 'xj352vofupe1dqz9emx13r'],
   }
 }
 
@@ -111,6 +122,19 @@ let questions = {
     optionTwo: {
       votes: ['tylermcginnis'],
       text: 'write Swift'
+    }
+  },
+  "xj352vofupe1dqz9emx15q": {
+    id: 'xj352vofupe1dqz9emx15q',
+    author: 'koiram',
+    timestamp: 1493579767145,
+    optionOne: {
+      votes: ['johndoe'],
+      text: 'Fly',
+    },
+    optionTwo: {
+      votes: ['tylermcginnis'],
+      text: 'Be Invisible'
     }
   },
 }

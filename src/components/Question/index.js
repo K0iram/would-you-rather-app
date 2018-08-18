@@ -1,27 +1,60 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import moment from 'moment'
 import Avatar from '@material-ui/core/Avatar'
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
 import Paper from '@material-ui/core/Paper'
+import Divider from '@material-ui/core/Divider';
+import Button from '@material-ui/core/Button';
+import Badge from '@material-ui/core/Badge';
+
+
 
 import './style.css'
 
 
 class Question extends Component {
 
+  questionButton = (text, votes) => {
+    const { authedUser } = this.props
+    const buttonVar = votes.includes(authedUser) ? "contained" : "outlined"
+
+    return votes.length ? (
+      <Badge color="secondary" badgeContent={votes.length}>
+        <Button variant={buttonVar} color="primary">
+          {text}
+        </Button>
+      </Badge>
+      ) : (
+      <Button variant={buttonVar} color="primary">
+        {text}
+      </Button>
+      )
+  }
+
   render() {
-    console.log(this.props.question)
     const { question } = this.props
-    const { author, optionOne, optionTwo } = question
+    const { author, optionOne, optionTwo, date } = question
 
     return (
-      <Paper className='question'>
-        <div className="question__author">
-          <Avatar src={author.avatarURL}/>
-          <h3>{author.name}</h3>
-        </div>
-        <button>{optionOne.text}</button><span>{optionOne.votes.length}</span>
-        <button>{optionTwo.text}</button><span>{optionTwo.votes.length}</span>
-      </Paper>
+      <div>
+      <ListItem>
+        <Paper className='question-card'>
+          <div className='question-card__user'>
+            <Avatar src={author.avatarURL}/>
+            <ListItemText primary={author.name} secondary={moment(date).format('ll')} />
+          </div>
+          <div className="question-card__questions">
+            <h5>Would You Rather</h5>
+            {this.questionButton(optionOne.text, optionOne.votes)}
+            <p>or</p>
+            {this.questionButton(optionTwo.text, optionTwo.votes)}
+          </div>
+        </Paper>
+      </ListItem>
+      <Divider/>
+      </div>
     )
   }
 }
@@ -41,7 +74,8 @@ const mapStateToProps = ({authedUser, users, questions}, { id }) => {
       optionTwo: {
         votes: question.optionTwo.votes,
         text: question.optionTwo.text
-      }
+      },
+      date: question.timestamp
     }
   }
 }

@@ -1,4 +1,4 @@
-.question {
+/*.question {
  padding: 20px 0;
  margin-bottom: 20px;
  display: flex;
@@ -22,4 +22,19 @@
 
 .question__author h3 {
   margin: 0;
+}*/
+
+.question-card {
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.question-card__user {
+  display: flex;
+}
+
+.question-card__questions {
+  text-align: center;
 }

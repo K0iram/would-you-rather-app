@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import {handleInitialData} from '../actions/shared'
 import {connect} from 'react-redux'
+import List from '@material-ui/core/List';
 import Question from './Question'
+
 
 class App extends Component {
   componentDidMount() {
@@ -12,11 +14,11 @@ class App extends Component {
     return (
       <div className="App">
         Would You Rather
-        <ul>
+        <List>
           {this.props.questionIds.map((id, i) => (
-              <li key={i}><Question id={id}/></li>
+              <Question id={id} key={i}/>
           ))}
-        </ul>
+        </List>
       </div>
     );
   }

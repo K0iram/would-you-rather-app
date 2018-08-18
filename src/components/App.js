@@ -3,6 +3,7 @@ import {handleInitialData} from '../actions/shared'
 import {connect} from 'react-redux'
 import List from '@material-ui/core/List';
 import Question from './Question'
+import NewQuestion from './NewQuestion'
 
 
 class App extends Component {
@@ -14,6 +15,7 @@ class App extends Component {
     return (
       <div className="App">
         Would You Rather
+        <NewQuestion/>
         <List>
           {this.props.questionIds.map((id, i) => (
               <Question id={id} key={i}/>

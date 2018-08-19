@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import { handleAddQuestion }  from '../../actions/questions'
+import { handleAddQuestion }  from '../../actions/shared'
 import Input from '@material-ui/core/Input'
 import Paper from '@material-ui/core/Paper'
 import Button from '@material-ui/core/Button'

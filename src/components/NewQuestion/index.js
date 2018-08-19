@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import {connect} from 'react-redux'
+import { handleAddQuestion }  from '../../actions/questions'
 import Input from '@material-ui/core/Input'
 import Paper from '@material-ui/core/Paper'
 import Button from '@material-ui/core/Button'
@@ -21,11 +23,14 @@ class NewQuestion extends Component {
 
   handleSubmit = () => {
     const {questionOne, questionTwo} = this.state
+    const { dispatch } = this.props
     console.log(`Would you rather ${questionOne} or ${questionTwo}`)
+    dispatch(handleAddQuestion(questionOne, questionTwo))
     this.setState({
       questionOne: '',
       questionTwo: ''
     })
+    //todo: send to the store and redirect to home
   }
 
   render() {
@@ -66,4 +71,10 @@ class NewQuestion extends Component {
   }
 }
 
-export default NewQuestion
+const mapStateToProps = ({authedUser}) => {
+  return {
+    authedUser
+  }
+}
+
+export default connect(mapStateToProps)(NewQuestion)

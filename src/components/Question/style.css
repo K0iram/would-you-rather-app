@@ -33,6 +33,7 @@
 
 .question-card__user {
   display: flex;
+  text-align: left;
 }
 
 .question-card__questions {

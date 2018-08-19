@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import moment from 'moment'
 import Avatar from '@material-ui/core/Avatar'
@@ -14,11 +14,13 @@ import Badge from '@material-ui/core/Badge';
 import './style.css'
 
 
-class Question extends Component {
+const Question = (props) => {
+  const { question } = props
+  const { author, optionOne, optionTwo, date } = question
 
-  questionButton = (text, votes) => {
-    const { authedUser } = this.props
-    const buttonVar = votes.includes(authedUser) ? "contained" : "outlined"
+  const questionButton = (text, votes) => {
+    const { authedUser } = props
+    const buttonVar = votes.includes(authedUser.id) ? "contained" : "outlined"
 
     return votes.length ? (
       <Badge color="secondary" badgeContent={votes.length}>
@@ -33,30 +35,25 @@ class Question extends Component {
       )
   }
 
-  render() {
-    const { question } = this.props
-    const { author, optionOne, optionTwo, date } = question
-
-    return (
-      <div>
-      <ListItem>
-        <Paper className='question-card'>
-          <div className='question-card__user'>
-            <Avatar src={author.avatarURL}/>
-            <ListItemText primary={author.name} secondary={moment(date).format('ll')} />
-          </div>
-          <div className="question-card__questions">
-            <h5>Would You Rather</h5>
-            {this.questionButton(optionOne.text, optionOne.votes)}
-            <p>or</p>
-            {this.questionButton(optionTwo.text, optionTwo.votes)}
-          </div>
-        </Paper>
-      </ListItem>
-      <Divider/>
-      </div>
-    )
-  }
+  return (
+    <div>
+    <ListItem>
+      <Paper className='question-card'>
+        <div className='question-card__user'>
+          <Avatar src={author.avatarURL}/>
+          <ListItemText primary={author.name} secondary={moment(date).format('ll')} />
+        </div>
+        <div className="question-card__questions">
+          <h5>Would You Rather</h5>
+          {questionButton(optionOne.text, optionOne.votes)}
+          <p>or</p>
+          {questionButton(optionTwo.text, optionTwo.votes)}
+        </div>
+      </Paper>
+    </ListItem>
+    <Divider/>
+    </div>
+  )
 }
 
 const mapStateToProps = ({authedUser, users, questions}, { id }) => {

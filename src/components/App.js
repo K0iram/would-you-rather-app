@@ -11,13 +11,14 @@ class App extends Component {
     this.props.dispatch(handleInitialData())
   }
   render() {
+    const {questionIds} = this.props
     return (
       <div className="App">
         Would You Rather
         <NewQuestion/>
         <List>
-          {this.props.questionIds.map((id, i) => (
-              <Question id={id} key={i}/>
+          {questionIds.map((id, i) => (
+            <Question id={id} key={i}/>
           ))}
         </List>
       </div>
@@ -27,7 +28,7 @@ class App extends Component {
 
 const mapStateToProps = ({questions}) => {
   return {
-    questionIds: Object.keys(questions)
+    questionIds: Object.keys(questions).sort((a,b) => questions[b].timestamp - questions[a].timestamp)
   }
 }
 

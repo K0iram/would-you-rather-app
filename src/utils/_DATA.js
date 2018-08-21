@@ -1,8 +1,10 @@
+'https://s3.amazonaws.com/mariosbucket/Udacity_Avatars/girl.png'
+
 let users = {
   sarahedo: {
     id: 'sarahedo',
     name: 'Sarah Edo',
-    avatarURL: 'https://s3.amazonaws.com/mariosbucket/Udacity_Avatars/girl.png',
+    avatarURL: 'https://s3.amazonaws.com/mariosbucket/Udacity_Avatars/girl.png'  ,
     answers: {
       "8xf0y6ziyjabvozdd253nd": 'optionOne',
       "6ni6ok3ym7mf1p33lnez": 'optionOne',
@@ -14,9 +16,8 @@ let users = {
   tylermcginnis: {
     id: 'tylermcginnis',
     name: 'Tyler McGinnis',
-    avatarURL: 'https://s3.amazonaws.com/mariosbucket/Udacity_Avatars/boy.png',
+    avatarURL: 'https://s3.amazonaws.com/mariosbucket/Udacity_Avatars/girl.png'  ,
     answers: {
-      "vthrdm985a262al8qx3do": 'optionOne',
       "xj352vofupe1dqz9emx13r": 'optionTwo',
     },
     questions: ['loxhs1bqm25b708cmbf3g', 'vthrdm985a262al8qx3do'],
@@ -24,18 +25,7 @@ let users = {
   johndoe: {
     id: 'johndoe',
     name: 'John Doe',
-    avatarURL: 'https://s3.amazonaws.com/mariosbucket/Udacity_Avatars/man.png',
-    answers: {
-      "xj352vofupe1dqz9emx13r": 'optionOne',
-      "vthrdm985a262al8qx3do": 'optionTwo',
-      "6ni6ok3ym7mf1p33lnez": 'optionOne'
-    },
-    questions: ['6ni6ok3ym7mf1p33lnez', 'xj352vofupe1dqz9emx13r'],
-  },
-  koiram: {
-    id: 'koiram',
-    name: 'Mario Kennedy',
-    avatarURL: 'https://s3.amazonaws.com/mariosbucket/Udacity_Avatars/man.png',
+    avatarURL: 'https://s3.amazonaws.com/mariosbucket/Udacity_Avatars/girl.png'  ,
     answers: {
       "xj352vofupe1dqz9emx13r": 'optionOne',
       "vthrdm985a262al8qx3do": 'optionTwo',
@@ -103,7 +93,7 @@ let questions = {
     author: 'tylermcginnis',
     timestamp: 1489579767190,
     optionOne: {
-      votes: ['tylermcginnis'],
+      votes: [],
       text: 'find $50 yourself',
     },
     optionTwo: {
@@ -122,19 +112,6 @@ let questions = {
     optionTwo: {
       votes: ['tylermcginnis'],
       text: 'write Swift'
-    }
-  },
-  "xj352vofupe1dqz9emx15q": {
-    id: 'xj352vofupe1dqz9emx15q',
-    author: 'koiram',
-    timestamp: 1493579767145,
-    optionOne: {
-      votes: ['johndoe'],
-      text: 'Fly',
-    },
-    optionTwo: {
-      votes: ['tylermcginnis'],
-      text: 'Be Invisible'
     }
   },
 }

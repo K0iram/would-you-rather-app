@@ -24,7 +24,6 @@ class NewQuestion extends Component {
   handleSubmit = () => {
     const {questionOne, questionTwo} = this.state
     const { dispatch } = this.props
-    console.log(`Would you rather ${questionOne} or ${questionTwo}`)
     dispatch(handleAddQuestion(questionOne, questionTwo))
     this.setState({
       questionOne: '',

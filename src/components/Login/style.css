@@ -1,0 +1,22 @@
+.login-card {
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 100px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: center;
+  align-items: center;
+}
+
+.MuiSelect-select-82 {
+  display: flex !important;
+  align-items: center !important;
+}
+
+.login-select {
+  min-width: 250px;
+  width: 100%;
+}

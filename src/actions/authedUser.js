@@ -1,15 +1,15 @@
-export const SET_AUTHED_USER = 'SET_AUTHED_USER'
+export const LOGIN_USER = 'LOGIN_USER'
+export const LOG_OUT_USER = 'LOG_OUT_USER'
 
-export const setAuthedUser = (user) => {
+export const loginUser = (user) => {
   return {
-    type: SET_AUTHED_USER,
+    type: LOGIN_USER,
     user
   }
 }
 
-export const handleSetAuthedUser = (id) => {
-  return (dispatch, getState) => {
-    const { users } = getState()
-    dispatch(setAuthedUser(users[id]))
+export const logoutUser = () => {
+  return {
+    type: LOG_OUT_USER
   }
 }

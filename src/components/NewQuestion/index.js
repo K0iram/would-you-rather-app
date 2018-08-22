@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
+import {Redirect} from 'react-router-dom'
 import { handleAddQuestion }  from '../../actions/shared'
 import Input from '@material-ui/core/Input'
 import Paper from '@material-ui/core/Paper'
@@ -11,8 +12,7 @@ import './style.css'
 class NewQuestion extends Component {
   state={
     questionOne: '',
-    questionTwo: '',
-    toHome: false
+    questionTwo: ''
   }
 
   questionInputChange = (e) => {
@@ -29,7 +29,7 @@ class NewQuestion extends Component {
       questionOne: '',
       questionTwo: ''
     })
-    //todo: send to the store and redirect to home
+    return <Redirect to='/'/>
   }
 
   render() {

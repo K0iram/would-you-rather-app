@@ -1,9 +1,14 @@
 import React, { Component } from 'react'
-import {handleInitialData} from '../actions/shared'
+import { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import { handleInitialData } from '../actions/shared'
 import {connect} from 'react-redux'
-import List from '@material-ui/core/List';
-import Question from './Question'
+import Nav from './Nav'
+import Login from './Login'
+import Logout from './Logout'
+import Dashboard from './Dashboard'
 import NewQuestion from './NewQuestion'
+import Leaderboard from './Leaderboard'
+import NotFound from './NotFound'
 
 
 class App extends Component {
@@ -11,24 +16,40 @@ class App extends Component {
     this.props.dispatch(handleInitialData())
   }
   render() {
-    const {questionIds} = this.props
+    const {signedIn} = this.props
     return (
-      <div className="App">
-        Would You Rather
-        <NewQuestion/>
-        <List>
-          {questionIds.map((id, i) => (
-            <Question id={id} key={i}/>
-          ))}
-        </List>
-      </div>
+      <Router>
+        <div className='container'>
+          <Nav/>
+          <div>
+            {!signedIn ? (
+              <div>
+                <Switch>
+                  <Route path='/' exact component={Login}/>
+                  <Route path='*' component={NotFound}/>
+                </Switch>
+              </div>
+            ):(
+              <div>
+                <Switch>
+                  <Route path='/' exact component={Dashboard}/>
+                  <Route path='/new_question' component={NewQuestion}/>
+                  <Route path='/leaderboard' component={Leaderboard}/>
+                  <Route path='/logout' component={Logout}/>
+                  <Route path='*' component={NotFound}/>
+                </Switch>
+              </div>
+            )}
+          </div>
+        </div>
+      </Router>
     );
   }
 }
 
-const mapStateToProps = ({questions}) => {
+const mapStateToProps = ({authedUser}) => {
   return {
-    questionIds: Object.keys(questions).sort((a,b) => questions[b].timestamp - questions[a].timestamp)
+    signedIn: authedUser !== null
   }
 }
 

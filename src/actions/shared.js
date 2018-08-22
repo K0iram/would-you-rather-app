@@ -1,18 +1,28 @@
 import { getInitialData, saveQuestion, saveQuestionAnswer } from '../utils/api'
 import { receiveUsers, updateUserAnswers, updateUserQuestions } from '../actions/users'
 import { receiveQuestions, saveAnswer, addQuestion } from '../actions/questions'
-import { handleSetAuthedUser } from '../actions/authedUser'
-
-const AUTHED_ID = 'tylermcginnis'
+import { loginUser, logoutUser } from '../actions/authedUser'
 
 export const handleInitialData = () => {
   return (dispatch) => {
     return getInitialData()
       .then(({ users, questions }) => {
         dispatch(receiveUsers(users))
-        dispatch(handleSetAuthedUser(AUTHED_ID))
         dispatch(receiveQuestions(questions))
       })
+  }
+}
+
+export const handleLoginUser = (id) => {
+  return (dispatch, getState) => {
+    const { users } = getState()
+    dispatch(loginUser(users[id]))
+  }
+}
+
+export const handleLogoutUser = () => {
+  return (dispatch) => {
+    dispatch(logoutUser(null))
   }
 }
 

@@ -16,7 +16,7 @@ let users = {
   tylermcginnis: {
     id: 'tylermcginnis',
     name: 'Tyler McGinnis',
-    avatarURL: 'https://s3.amazonaws.com/mariosbucket/Udacity_Avatars/girl.png'  ,
+    avatarURL: 'https://s3.amazonaws.com/mariosbucket/Udacity_Avatars/man.png'  ,
     answers: {
       "xj352vofupe1dqz9emx13r": 'optionTwo',
     },
@@ -25,7 +25,7 @@ let users = {
   johndoe: {
     id: 'johndoe',
     name: 'John Doe',
-    avatarURL: 'https://s3.amazonaws.com/mariosbucket/Udacity_Avatars/girl.png'  ,
+    avatarURL: 'https://s3.amazonaws.com/mariosbucket/Udacity_Avatars/boy.png'  ,
     answers: {
       "xj352vofupe1dqz9emx13r": 'optionOne',
       "vthrdm985a262al8qx3do": 'optionTwo',

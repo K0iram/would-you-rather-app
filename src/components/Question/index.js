@@ -49,7 +49,6 @@ class Question extends Component {
 
     return (
       <div>
-      <ListItem>
         <Paper className='question-card pullDown'>
           <div className='question-card__user'>
             <Avatar src={author.avatarURL}/>
@@ -72,8 +71,6 @@ class Question extends Component {
             )
           }
         </Paper>
-      </ListItem>
-      <Divider/>
       </div>
     )
   }

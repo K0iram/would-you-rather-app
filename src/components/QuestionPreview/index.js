@@ -7,6 +7,7 @@ import ListItemText from '@material-ui/core/ListItemText'
 import Paper from '@material-ui/core/Paper'
 import Divider from '@material-ui/core/Divider'
 import Button from '@material-ui/core/Button'
+import { Link } from 'react-router-dom'
 
 
 
@@ -29,7 +30,7 @@ class QuestionPreview extends Component {
           <h5>Would You Rather</h5>
          <p>{`${optionOne.text} OR ${optionTwo.text}`}</p>
         </div>
-        <Button color='primary' variant='contained'>Answer It!</Button>
+        <Button color='primary' variant='contained'><Link to={`/question/${id}`}>Answer It!</Link></Button>
       </Paper>
     )
   }

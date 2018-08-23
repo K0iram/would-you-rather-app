@@ -9,6 +9,7 @@ import Logout from './Logout'
 import Dashboard from './Dashboard'
 import NewQuestion from './NewQuestion'
 import Leaderboard from './Leaderboard'
+import QuestionPage from './QuestionPage'
 import NotFound from './NotFound'
 
 import { receiveQuestions } from '../actions/questions'
@@ -76,6 +77,7 @@ class App extends Component {
                   <Route path='/new_question' component={NewQuestion}/>
                   <Route path='/leaderboard' component={Leaderboard}/>
                   <Route path='/logout' component={Logout}/>
+                  <Route path='/question/:questionId' component={QuestionPage}/>
                   <Route path='*' component={NotFound}/>
                 </Switch>
               </div>

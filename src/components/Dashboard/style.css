@@ -1,0 +1,19 @@
+.dashboard-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.dashboard-list .question-card {
+  margin: 5px;
+}
+
+.dashboard-filter {
+  flex-direction: row !important;
+  justify-content: flex-end;
+}
+
+.dashboard-filter__label {
+  display: flex;
+  flex-direction: row-reverse;
+}

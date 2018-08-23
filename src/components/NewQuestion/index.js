@@ -34,7 +34,8 @@ class NewQuestion extends Component {
 
   render() {
     return (
-      <div>
+      <div className='question'>
+        <h1>Add A New Question!</h1>
         <Paper className='question-card'>
           <h3>Would You Rather:</h3>
           <Input

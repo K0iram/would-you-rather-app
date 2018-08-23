@@ -1,0 +1,47 @@
+.question-card {
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.question-card__user {
+  display: flex;
+  text-align: left;
+}
+
+.question-card__questions {
+  text-align: center;
+}
+
+.pullDown{
+  animation-name: pullDown;
+  animation-duration: 1.1s;
+  animation-timing-function: ease-out;
+  transform-origin: 50% 0%;
+}
+
+
+@keyframes pullDown {
+  0% {
+    transform: scaleY(0.1);
+  }
+  40% {
+    transform: scaleY(1.02);
+  }
+  60% {
+    transform: scaleY(0.98);
+  }
+  80% {
+    transform: scaleY(1.01);
+  }
+  100% {
+    transform: scaleY(0.98);
+  }
+  80% {
+    transform: scaleY(1.01);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}

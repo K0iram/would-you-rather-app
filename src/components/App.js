@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import { getInitialData } from '../utils/api'
-import { handleInitialData, handleLoginUser } from '../actions/shared'
+import { handleLoginUser } from '../actions/shared'
 import {connect} from 'react-redux'
 import Nav from './Nav'
 import Login from './Login'

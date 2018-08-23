@@ -8,11 +8,11 @@ import './style.css'
 class Leaderboard extends Component {
 
   render() {
-    const {users} = this.props
+    const {userDetails} = this.props
     return (
-      <div>
+      <div className="leaderboard-title">
         <h1>OFFICIAL LEADERBOARD</h1>
-        <LeaderTable users={users}/>
+        <LeaderTable users={userDetails}/>
       </div>
     )
   }
@@ -20,7 +20,15 @@ class Leaderboard extends Component {
 
 const mapStateToProps = ({users}) => {
   return {
-    users
+    userDetails: Object.values(users).map((user) => {
+      return {
+        name: user.name,
+        questionsLength: user.questions.length,
+        answersLength: Object.keys(user.answers).length,
+        total: user.questions.length + Object.keys(user.answers).length
+
+      }
+    })
   }
 }
 

@@ -10,6 +10,7 @@ class Logout extends Component {
   componentDidMount() {
     const {dispatch} = this.props
     dispatch(handleLogoutUser())
+    localStorage.clear()
   }
 
   render() {

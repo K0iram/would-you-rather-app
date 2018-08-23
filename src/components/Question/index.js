@@ -18,12 +18,12 @@ import './style.css'
 class Question extends Component {
 
   handleAnswer = (option) => {
-    const { dispatch, user, question } = this.props
+    const { onSubmitAnswer, user, question } = this.props
     const { id, optionOne, optionTwo } = question
     if(optionOne.text === option.text) {
-      dispatch(handleQuestionAnswer(user.id, id, 'optionOne'))
+      onSubmitAnswer(user.id, id, 'optionOne')
     } else if (optionTwo.text === option.text) {
-      dispatch(handleQuestionAnswer(user.id, id, 'optionTwo'))
+      onSubmitAnswer(user.id, id, 'optionTwo')
     }
   }
 
@@ -100,4 +100,10 @@ const mapStateToProps = ({authedUser, users, questions}, { id }) => {
   }
 }
 
-export default connect(mapStateToProps)(Question)
+const mapDispatchToProps = dispatch => {
+  return {
+    onSubmitAnswer: (userId, qid, option) => dispatch(handleQuestionAnswer(userId, qid, option))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Question)

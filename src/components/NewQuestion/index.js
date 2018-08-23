@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import {Redirect} from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { handleAddQuestion }  from '../../actions/shared'
 import Input from '@material-ui/core/Input'
 import Paper from '@material-ui/core/Paper'
@@ -23,13 +23,13 @@ class NewQuestion extends Component {
 
   handleSubmit = () => {
     const {questionOne, questionTwo} = this.state
-    const { dispatch } = this.props
-    dispatch(handleAddQuestion(questionOne, questionTwo))
+    const { onSubmitQuestion, history } = this.props
+    onSubmitQuestion(questionOne, questionTwo)
     this.setState({
       questionOne: '',
       questionTwo: ''
     })
-    return <Redirect to='/'/>
+    return history.push('/')
   }
 
   render() {
@@ -76,4 +76,10 @@ const mapStateToProps = ({authedUser}) => {
   }
 }
 
-export default connect(mapStateToProps)(NewQuestion)
+const mapDispatchToProps = dispatch => {
+  return {
+    onSubmitQuestion: (questionOne, questionTwo) => dispatch(handleAddQuestion(questionOne, questionTwo))
+  }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NewQuestion))

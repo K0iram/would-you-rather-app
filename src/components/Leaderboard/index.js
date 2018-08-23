@@ -9,7 +9,6 @@ class Leaderboard extends Component {
 
   render() {
     const {users} = this.props
-    console.log(users)
     return (
       <div>
         <h1>OFFICIAL LEADERBOARD</h1>
@@ -20,7 +19,9 @@ class Leaderboard extends Component {
 }
 
 const mapStateToProps = ({users}) => {
-  return users
+  return {
+    users
+  }
 }
 
 export default connect(mapStateToProps)(Leaderboard)

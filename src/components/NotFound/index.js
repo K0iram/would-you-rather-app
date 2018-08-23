@@ -8,8 +8,8 @@ import './style.css'
 class NotFound extends Component {
 
   render() {
-
-    if(this.props.authedUser === null) {
+    const { authedUser } = this.props
+    if(!authedUser) {
       return (
         <div>
           <Redirect to='/' />

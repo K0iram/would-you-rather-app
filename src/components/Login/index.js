@@ -22,17 +22,17 @@ class Login extends Component {
   }
 
   onSelectChange = (e) => {
-    this.setState({selectedUser: e.target.value})
+    this.setState({
+      selectedUser: e.target.value
+    })
   }
 
-    handleSubmit = () => {
-    const { dispatch } = this.props
+  handleSubmit = () => {
+    const { onReceiveUser } = this.props
     const { selectedUser } = this.state
-    dispatch(handleLoginUser(selectedUser))
-    this.setState({
-      selectedUser: ''
-    })
-    //todo: send to the store and redirect to home
+
+    localStorage.setItem('user', selectedUser)
+    onReceiveUser(selectedUser)
   }
 
   render() {
@@ -45,8 +45,8 @@ class Login extends Component {
             <MenuItem value="">
               <em>User</em>
             </MenuItem>
-            {Object.values(this.props.users).map((user) => (
-              <MenuItem value={user.id}>
+            {Object.values(this.props.users).map((user, i) => (
+              <MenuItem value={user.id} key={i}>
                 <ListItemIcon>
                   <Avatar src={user.avatarURL}/>
                 </ListItemIcon>
@@ -68,4 +68,10 @@ const mapStateToProps = ({users}) => {
   }
 }
 
-export default connect(mapStateToProps)(Login)
+const mapDispatchToProps = dispatch => {
+  return {
+    onReceiveUser: user => dispatch(handleLoginUser(user))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

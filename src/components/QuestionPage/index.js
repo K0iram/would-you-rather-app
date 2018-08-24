@@ -30,7 +30,7 @@ class QuestionPage extends Component {
     ]
 
     return (
-      <div className='question-container'>
+      <div className={isAnswered ? 'question-container with-results pullDown' : 'question-container'}>
         <Link to='/'>
           <div className='question-container__back'>
             <Icon><KeyboardArrowLeft/></Icon>

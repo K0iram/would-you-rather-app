@@ -56,14 +56,14 @@ class Nav extends Component {
     const open = Boolean(anchorEl)
 
     return (
-      <div className="nav">
-        <AppBar position="static">
+      <div className='nav'>
+        <AppBar position='static'>
           <Toolbar>
-            <Typography variant="title" color="inherit" className='nav-title'>
+            <Typography variant='title' color='inherit' className='nav-title'>
               Would You Rather?
             </Typography>
             {this.props.authedUser !== null && (
-              <Typography variant="subheading" color="inherit" className='nav-user'>
+              <Typography variant='subheading' color='inherit' className='nav-user'>
                 Hello, {this.props.authedUser.name}!
               </Typography>
             )}
@@ -71,14 +71,14 @@ class Nav extends Component {
               <div>
                 <IconButton
                   aria-owns={open ? 'menu-appbar' : null}
-                  aria-haspopup="true"
+                  aria-haspopup='true'
                   onClick={this.handleMenu}
-                  color="inherit"
+                  color='inherit'
                 >
                   <Avatar src={this.props.authedUser.avatarURL}/>
                 </IconButton>
                 <Menu
-                  id="menu-appbar"
+                  id='menu-appbar'
                   anchorEl={anchorEl}
                   anchorOrigin={{
                     vertical: 'top',

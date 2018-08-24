@@ -1,4 +1,4 @@
-.question-card {
+.new-question-card {
   max-width: 500px;
   width: 100%;
   margin: 0 auto;
@@ -10,12 +10,13 @@
   justify-content: space-between;
 }
 
-.question h1 {
+.new-question h1 {
   text-align: center;
 }
 
 @media(max-width: 450px) {
-  .question-card {
-    max-width: 300px;
+  .new-question-card {
+    max-width:  325px;
+    padding: 5px;
   }
 }

@@ -3,6 +3,7 @@
   width: 100%;
   margin: 0 auto;
   padding: 10px;
+  text-align: center;
 }
 
 .question-card__user {
@@ -43,5 +44,12 @@
   }
   100% {
     transform: scaleY(1);
+  }
+}
+
+@media(max-width: 450px) {
+  .question-card {
+    max-width: 325px;
+    padding-bottom: 10px;
   }
 }

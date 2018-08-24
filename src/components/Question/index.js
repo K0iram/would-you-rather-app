@@ -3,10 +3,8 @@ import { connect } from 'react-redux'
 import { handleQuestionAnswer }  from '../../actions/shared'
 import moment from 'moment'
 import Avatar from '@material-ui/core/Avatar'
-import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 import Paper from '@material-ui/core/Paper'
-import Divider from '@material-ui/core/Divider'
 import Button from '@material-ui/core/Button'
 import Badge from '@material-ui/core/Badge'
 
@@ -29,16 +27,16 @@ class Question extends Component {
 
   questionButton = (text, option) => {
     const { user } = this.props
-    const buttonVar = option.votes.includes(user.id) ? "contained" : "outlined"
+    const buttonVar = option.votes.includes(user.id) ? 'contained' : 'outlined'
 
     return option.votes.length ? (
-      <Badge color="secondary" badgeContent={option.votes.length}>
-        <Button variant={buttonVar} color="primary">
+      <Badge color='secondary' badgeContent={option.votes.length}>
+        <Button variant={buttonVar} color='primary'>
           {text}
         </Button>
       </Badge>
       ) : (
-      <Button onClick={() => this.handleAnswer(option)}variant={buttonVar} color="primary">
+      <Button onClick={() => this.handleAnswer(option)}variant={buttonVar} color='primary'>
         {text}
       </Button>
       )
@@ -55,14 +53,14 @@ class Question extends Component {
             <ListItemText primary={author.name} secondary={moment(date).format('ll')} />
           </div>
           {user.answers.hasOwnProperty(id) ? (
-            <div className="question-card__answered pullDown" id="flip" >
+            <div className='question-card__answered pullDown' id='flip' >
                 <h5>Would You Rather</h5>
                 <p>{optionOne.text} <strong>or</strong> {optionTwo.text}</p>
                 <h5>You Answered:</h5>
                 <p>{question[user.answers[id]].text}</p>
             </div>
             ) : (
-            <div className="question-card__questions pullDown">
+            <div className='question-card__questions pullDown'>
               <h5>Would You Rather</h5>
               {this.questionButton(optionOne.text, optionOne)}
               <p>or</p>
@@ -76,24 +74,9 @@ class Question extends Component {
   }
 }
 
-const mapStateToProps = ({authedUser, users, questions}, { id }) => {
-  const question = questions[id]
-
+const mapStateToProps = ({dispatch}) => {
   return {
-    user: users[authedUser.id],
-    question: {
-      id: id,
-      author: users[question.author],
-      optionOne: {
-        votes: question.optionOne.votes,
-        text: question.optionOne.text.toUpperCase()
-      },
-      optionTwo: {
-        votes: question.optionTwo.votes,
-        text: question.optionTwo.text.toUpperCase()
-      },
-      date: question.timestamp
-    }
+    dispatch
   }
 }
 

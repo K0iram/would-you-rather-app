@@ -34,14 +34,14 @@ class NewQuestion extends Component {
 
   render() {
     return (
-      <div className='question'>
+      <div className='new-question'>
         <h1>Add A New Question!</h1>
-        <Paper className='question-card'>
+        <Paper className='new-question-card'>
           <h3>Would You Rather:</h3>
           <Input
             value={this.state.questionOne}
-            name="questionOne"
-            placeholder="Question One"
+            name='questionOne'
+            placeholder='Question One'
             onChange={this.questionInputChange}
             inputProps={{
               'aria-label': 'Question One',
@@ -50,8 +50,8 @@ class NewQuestion extends Component {
           <h5>OR</h5>
           <Input
             value={this.state.questionTwo}
-            name="questionTwo"
-            placeholder="Question Two"
+            name='questionTwo'
+            placeholder='Question Two'
             onChange={this.questionInputChange}
             inputProps={{
               'aria-label': 'Question Two',

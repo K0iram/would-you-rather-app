@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import List from '@material-ui/core/List'
-import Switch from '@material-ui/core/Switch';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormGroup from '@material-ui/core/FormGroup';
+import Switch from '@material-ui/core/Switch'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+import FormGroup from '@material-ui/core/FormGroup'
 import QuestionPreview from '../QuestionPreview'
 
 import './style.css'
@@ -26,7 +26,7 @@ class Dashboard extends Component {
         <FormGroup className='dashboard-filter'>
           <FormControlLabel
             control={
-              <Switch checked={filtered} onChange={this.handleChange} aria-label="LoginSwitch" />
+              <Switch checked={filtered} onChange={this.handleChange} aria-label='LoginSwitch' />
             }
             label={filtered ? 'Only Unanswered Questions' : 'All Questions'}
             className='dashboard-filter__label'

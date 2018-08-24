@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { handleQuestionAnswer }  from '../../actions/shared'
 import moment from 'moment'
 import Avatar from '@material-ui/core/Avatar'
 import ListItemText from '@material-ui/core/ListItemText'
 import Paper from '@material-ui/core/Paper'
-import Divider from '@material-ui/core/Divider'
 import Button from '@material-ui/core/Button'
 import { Link } from 'react-router-dom'
 
@@ -17,20 +15,20 @@ import './style.css'
 class QuestionPreview extends Component {
 
   render() {
-    const { question, user} = this.props
+    const { question} = this.props
     const { author, optionOne, optionTwo, date, id } = question
 
     return (
-      <Paper className='question-card pullDown'>
-        <div className='question-card__user'>
+      <Paper className='question-preview-card pullDown'>
+        <div className='question-preview-card__user'>
           <Avatar src={author.avatarURL}/>
           <ListItemText primary={author.name} secondary={moment(date).format('ll')} />
         </div>
-        <div className="question-card__questions pullDown">
+        <div className='question-preview-card__questions pullDown'>
           <h5>Would You Rather</h5>
          <p>{`${optionOne.text} OR ${optionTwo.text}`}</p>
         </div>
-        <Button color='primary' variant='contained'><Link to={`/question/${id}`}>Answer It!</Link></Button>
+        <Link to={`/question/${id}`}><Button color='primary' variant='contained'>Answer It!</Button></Link>
       </Paper>
     )
   }

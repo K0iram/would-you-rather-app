@@ -15,11 +15,15 @@ import './style.css'
 class QuestionPreview extends Component {
 
   render() {
-    const { question} = this.props
+    const { question, user } = this.props
     const { author, optionOne, optionTwo, date, id } = question
+    const isAnswered = Object.keys(user.answers).includes(id)
 
     return (
       <Paper className='question-preview-card pullDown'>
+        {isAnswered &&
+          <div className="answered-banner">Answered!</div>
+        }
         <div className='question-preview-card__user'>
           <Avatar src={author.avatarURL}/>
           <ListItemText primary={author.name} secondary={moment(date).format('ll')} />
@@ -28,7 +32,11 @@ class QuestionPreview extends Component {
           <h5>Would You Rather</h5>
          <p>{`${optionOne.text} OR ${optionTwo.text}`}</p>
         </div>
-        <Link to={`/question/${id}`}><Button color='primary' variant='contained'>Answer It!</Button></Link>
+        {isAnswered ? (
+          <Link to={`/question/${id}`}><Button color='primary' variant='contained'>See Your Answer</Button></Link>
+        ):(
+          <Link to={`/question/${id}`}><Button color='primary' variant='contained'>Answer It!</Button></Link>
+        )}
       </Paper>
     )
   }

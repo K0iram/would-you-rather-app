@@ -25,22 +25,6 @@ class Question extends Component {
     }
   }
 
-  questionButton = (text, option) => {
-    const { user } = this.props
-    const buttonVar = option.votes.includes(user.id) ? 'contained' : 'outlined'
-
-    return option.votes.length ? (
-      <Badge color='secondary' badgeContent={option.votes.length}>
-        <Button variant={buttonVar} color='primary'>
-          {text}
-        </Button>
-      </Badge>
-      ) : (
-      <Button onClick={() => this.handleAnswer(option)}variant={buttonVar} color='primary'>
-        {text}
-      </Button>
-      )
-  }
   render() {
     const { question, user} = this.props
     const { author, optionOne, optionTwo, date, id } = question
@@ -62,9 +46,13 @@ class Question extends Component {
             ) : (
             <div className='question-card__questions pullDown'>
               <h5>Would You Rather</h5>
-              {this.questionButton(optionOne.text, optionOne)}
+              <Button onClick={() => this.handleAnswer(optionOne)}variant='outlined' color='primary'>
+                {optionOne.text}
+              </Button>
               <p>or</p>
-              {this.questionButton(optionTwo.text, optionTwo)}
+              <Button onClick={() => this.handleAnswer(optionTwo)} variant='outlined' color='primary'>
+                {optionTwo.text}
+              </Button>
             </div>
             )
           }

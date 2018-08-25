@@ -38,7 +38,7 @@ class QuestionPage extends Component {
           </div>
         </Link>
         <Question question={question} user={user}/>
-        {isAnswered ? (
+        {isAnswered &&
           <div className='results'>
             <PieChart
               size={200}
@@ -50,9 +50,7 @@ class QuestionPage extends Component {
               <Legend data={chartData} dataId={'key'} config={config}/>
             </div>
           </div>
-        ): (
-          null
-        )}
+        }
       </div>
     )
   }
@@ -64,7 +62,7 @@ const mapStateToProps = ({authedUser, users, questions}, props) => {
   const isQuestion = Object.keys(questions).includes(questionId)
   const user = users[authedUser.id]
   const isAnswered = Object.keys(user.answers).includes(questionId)
-  const totalVotes =question.optionOne.votes.length + question.optionTwo.votes.length
+  const totalVotes = question.optionOne.votes.length + question.optionTwo.votes.length
 
   return {
     authedQuestion: isQuestion,
@@ -83,8 +81,8 @@ const mapStateToProps = ({authedUser, users, questions}, props) => {
       },
       date: question.timestamp
     },
-    optionOnePercentage: (question.optionOne.votes.length / totalVotes) * 100,
-    optionTwoPercentage: (question.optionTwo.votes.length / totalVotes) * 100
+    optionOnePercentage: Math.floor((question.optionOne.votes.length / totalVotes) * 100),
+    optionTwoPercentage: Math.floor((question.optionTwo.votes.length / totalVotes) * 100)
   }
 }
 

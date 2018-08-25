@@ -32,11 +32,18 @@ class Dashboard extends Component {
             className='dashboard-filter__label'
           />
         </FormGroup>
+        {}
         <List className='dashboard-list'>
           {this.state.filtered ? (
-            unansweredIds.map((id, i) => (
-              <QuestionPreview id={id} key={i}/>
-            ))
+            unansweredIds.length > 0 ? (
+              unansweredIds.map((id, i) => (
+                <QuestionPreview id={id} key={i}/>
+              ))
+            ): (
+              <div className="no-questions">
+                <h3>You Have No More Question To Answer</h3>
+              </div>
+            )
           ) : (
             questionIds.map((id, i) => (
               <QuestionPreview id={id} key={i}/>

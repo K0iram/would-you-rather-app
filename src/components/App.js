@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import { getInitialData } from '../utils/api'
 import { handleLoginUser } from '../actions/shared'
 import {connect} from 'react-redux'
+import LoadingBar from 'react-redux-loading'
 import Nav from './Nav'
 import Login from './Login'
 import Logout from './Logout'
@@ -16,11 +17,6 @@ import { receiveQuestions } from '../actions/questions'
 import { receiveUsers } from '../actions/users'
 
 class App extends Component {
-
-  state = {
-    loading: true
-  }
-
   componentDidMount() {
     this.fetchInitial()
   }
@@ -28,19 +24,12 @@ class App extends Component {
   fetchInitial = () => {
     const { onReceiveQuestions, onReceiveUsers } = this.props
 
-    const setLoaded = () => {
-      this.setState({
-        loading: false
-      })
-    }
-
     getInitialData()
       .then(({ users, questions }) => {
         onReceiveQuestions(questions)
         onReceiveUsers(users)
       })
       .then(this.checkForUser)
-      .then(setLoaded)
   }
 
   checkForUser = () => {
@@ -53,8 +42,7 @@ class App extends Component {
   }
 
   render() {
-    const { signedIn } = this.props
-    const { loading } = this.state
+    const { signedIn, loading } = this.props
 
     if(loading) return null
 
@@ -62,6 +50,7 @@ class App extends Component {
       <Router>
         <div className='container'>
           <Nav/>
+          <LoadingBar/>
           <div>
             {!signedIn ? (
               <div>

@@ -28,7 +28,7 @@ class App extends Component {
           <CssBaseline/>
           <Nav/>
           <LoadingBar/>
-          <div>
+            <div>
             {loading ? (
               null
             ): (
@@ -59,9 +59,10 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({authedUser}) => {
+const mapStateToProps = ({authedUser, loadingBar}) => {
   return {
-    signedIn: authedUser !== null
+    signedIn: authedUser !== null,
+    loading: Object.values(loadingBar).includes(1)
   }
 }
 

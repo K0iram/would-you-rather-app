@@ -20,18 +20,6 @@ class Nav extends Component {
     anchorEl: null,
   }
 
-  handleChange = (event, checked) => {
-    this.setState({ auth: checked })
-  }
-
-  handleMenu = event => {
-    this.setState({ anchorEl: event.currentTarget })
-  }
-
-  handleClose = () => {
-    this.setState({ anchorEl: null })
-  }
-
   menuItems = [
     {
       name: 'Dashboard',
@@ -51,6 +39,18 @@ class Nav extends Component {
     }
   ]
 
+  handleChange = (event, checked) => {
+    this.setState({ auth: checked })
+  }
+
+  handleMenu = event => {
+    this.setState({ anchorEl: event.currentTarget })
+  }
+
+  handleClose = () => {
+    this.setState({ anchorEl: null })
+  }
+
   render() {
     const { anchorEl } = this.state
     const open = Boolean(anchorEl)
@@ -59,9 +59,11 @@ class Nav extends Component {
       <div className='nav'>
         <AppBar position='static'>
           <Toolbar>
-            <Typography variant='title' color='inherit' className='nav-title'>
-              Would You Rather?
-            </Typography>
+              <Typography variant='title' color='inherit' className='nav-title'>
+                <Link to='/'>
+                  Would You Rather?
+                </Link>
+              </Typography>
             {this.props.authedUser !== null && (
               <Typography variant='subheading' color='inherit' className='nav-user'>
                 Hello, {this.props.authedUser.name}!

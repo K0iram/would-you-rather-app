@@ -19,9 +19,20 @@ class QuestionPage extends Component {
       return <Redirect to='/not_found'/>
     }
 
+    const optOneLength = optionOne.votes.length
+     const optTwoLength = optionTwo.votes.length
+
+
     const chartData = [
-      { key: `${optionOne.text} - ${optionOnePercentage}%`, value: optionOne.votes.length, color: '#3f51b5' },
-      { key: `${optionTwo.text} - ${optionTwoPercentage}%`, value: optionTwo.votes.length, color: '#74c474' }
+      {
+        key: `${optionOne.text} - ${optOneLength > 1 ? `${optOneLength} votes` : `${optOneLength} vote`} - ${optionOnePercentage}%`,
+        value: optionOne.votes.length,
+        color: '#3f51b5'
+       },
+      {
+        key: `${optionTwo.text} - ${optTwoLength > 1 ? `${optTwoLength} votes` : `${optTwoLength} vote`} - ${optionTwoPercentage}%`,
+        value: optionTwo.votes.length,
+        color: '#74c474' }
     ]
 
      const config = [

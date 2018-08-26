@@ -9,11 +9,20 @@ export const handleInitialData = () => {
     dispatch(showLoading())
     return getInitialData()
       .then(({ users, questions }) => {
-        dispatch(receiveUsers(users))
         dispatch(receiveQuestions(questions))
-        dispatch(hideLoading())
+        dispatch(receiveUsers(users))
+        checkForUser(dispatch)
       })
+      .then(() => dispatch(hideLoading()))
   }
+}
+
+const checkForUser = (dispatch) => {
+    const persistedUser = window.localStorage.getItem('user') || null
+
+    if(persistedUser) {
+      dispatch(handleLoginUser(persistedUser))
+    }
 }
 
 export const handleLoginUser = (id) => {
@@ -31,8 +40,8 @@ export const handleLogoutUser = () => {
 
 export const handleAddQuestion = (questionOne, questionTwo) => {
   return (dispatch, getState) => {
-    const { authedUser } = getState()
     dispatch(showLoading())
+    const { authedUser } = getState()
     return saveQuestion({
       optionOneText: questionOne,
       optionTwoText: questionTwo,
@@ -41,8 +50,8 @@ export const handleAddQuestion = (questionOne, questionTwo) => {
     .then(question => {
       dispatch(addQuestion(question))
       dispatch(updateUserQuestions(question))
-      dispatch(hideLoading())
     })
+    .finally(() => dispatch(hideLoading()))
   }
 }
 

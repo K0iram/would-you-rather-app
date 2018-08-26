@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
-import { getInitialData } from '../utils/api'
-import { handleLoginUser } from '../actions/shared'
+import { handleInitialData } from '../actions/shared'
 import {connect} from 'react-redux'
+import CssBaseline from '@material-ui/core/CssBaseline';
 import LoadingBar from 'react-redux-loading'
 import Nav from './Nav'
 import Login from './Login'
@@ -13,63 +13,44 @@ import Leaderboard from './Leaderboard'
 import QuestionPage from './QuestionPage'
 import NotFound from './NotFound'
 
-import { receiveQuestions } from '../actions/questions'
-import { receiveUsers } from '../actions/users'
-
 class App extends Component {
   componentDidMount() {
-    this.fetchInitial()
-  }
-
-  fetchInitial = () => {
-    const { onReceiveQuestions, onReceiveUsers } = this.props
-
-    getInitialData()
-      .then(({ users, questions }) => {
-        onReceiveQuestions(questions)
-        onReceiveUsers(users)
-      })
-      .then(this.checkForUser)
-  }
-
-  checkForUser = () => {
-    const { onReceiveUser } = this.props
-    const persistedUser = localStorage.getItem('user') || null
-
-    if(persistedUser) {
-      onReceiveUser(persistedUser)
-    }
+    const { onReceiveData } = this.props
+    onReceiveData()
   }
 
   render() {
     const { signedIn, loading } = this.props
 
-    if(loading) return null
-
     return (
       <Router>
         <div className='container'>
+          <CssBaseline/>
           <Nav/>
           <LoadingBar/>
           <div>
-            {!signedIn ? (
-              <div>
-                <Switch>
-                  <Route path='/' exact component={Login}/>
-                  <Route path='*' component={NotFound}/>
-                </Switch>
-              </div>
-            ):(
-              <div>
-                <Switch>
-                  <Route path='/' exact component={Dashboard}/>
-                  <Route path='/new_question' component={NewQuestion}/>
-                  <Route path='/leaderboard' component={Leaderboard}/>
-                  <Route path='/logout' component={Logout}/>
-                  <Route path='/question/:questionId' component={QuestionPage}/>
-                  <Route path='*' component={NotFound}/>
-                </Switch>
-              </div>
+            {loading ? (
+              null
+            ): (
+              signedIn ? (
+                <div>
+                  <Switch>
+                    <Route path='/' exact component={Dashboard}/>
+                    <Route path='/new_question' component={NewQuestion}/>
+                    <Route path='/leaderboard' component={Leaderboard}/>
+                    <Route path='/logout' component={Logout}/>
+                    <Route path='/question/:questionId' component={QuestionPage}/>
+                    <Route path='*' component={NotFound}/>
+                  </Switch>
+                </div>
+              ):(
+                <div>
+                  <Switch>
+                    <Route path='/' exact component={Login}/>
+                    <Route path='*' component={NotFound}/>
+                  </Switch>
+                </div>
+              )
             )}
           </div>
         </div>
@@ -86,9 +67,7 @@ const mapStateToProps = ({authedUser}) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onReceiveUsers: users => dispatch(receiveUsers(users)),
-    onReceiveQuestions: questions => dispatch(receiveQuestions(questions)),
-    onReceiveUser: user => dispatch(handleLoginUser(user))
+    onReceiveData: () => dispatch(handleInitialData()),
   }
 }
 

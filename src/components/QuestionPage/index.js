@@ -20,19 +20,23 @@ class QuestionPage extends Component {
     }
 
     const optOneLength = optionOne.votes.length
-     const optTwoLength = optionTwo.votes.length
+    const optTwoLength = optionTwo.votes.length
+    const optOneString = `${optionOne.text} - ${optOneLength > 1 ? `${optOneLength} Votes` : `${optOneLength} Vote`} - ${optionOnePercentage}%`
+    const optTwoString = `${optionTwo.text} - ${optTwoLength > 1 ? `${optTwoLength} Votes` : `${optTwoLength} Vote`} - ${optionTwoPercentage}%`
+    const noVotes = `${optionTwo.text} - No Votes`
 
 
     const chartData = [
       {
-        key: `${optionOne.text} - ${optOneLength > 1 ? `${optOneLength} votes` : `${optOneLength} vote`} - ${optionOnePercentage}%`,
+        key: optOneLength <= 0 ? (noVotes) : (optOneString),
         value: optionOne.votes.length,
         color: '#3f51b5'
        },
       {
-        key: `${optionTwo.text} - ${optTwoLength > 1 ? `${optTwoLength} votes` : `${optTwoLength} vote`} - ${optionTwoPercentage}%`,
+        key: optTwoLength <= 0 ? (noVotes) : (optTwoString),
         value: optionTwo.votes.length,
-        color: '#74c474' }
+        color: '#74c474'
+      }
     ]
 
      const config = [

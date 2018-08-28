@@ -11,7 +11,8 @@
   align-items: center;
 }
 
-.MuiSelect-select-82 {
+{/*hacky way to select the user element in the list from material ui*/}
+.login-select div > div {
   display: flex !important;
   align-items: center !important;
 }

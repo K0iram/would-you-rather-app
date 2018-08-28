@@ -1,3 +1,9 @@
+.dashboard-empty {
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+}
+
 .dashboard-list {
   display: flex;
   flex-wrap: wrap;

@@ -22,7 +22,7 @@ class Dashboard extends Component {
     const { questionIds, unansweredIds } = this.props
     const { filtered } = this.state
     return (
-      <div className='dashboard'>
+      <div>
         <FormGroup className='dashboard-filter'>
           <FormControlLabel
             control={
@@ -32,24 +32,25 @@ class Dashboard extends Component {
             className='dashboard-filter__label'
           />
         </FormGroup>
-        {}
-        <List className='dashboard-list'>
-          {this.state.filtered ? (
-            unansweredIds.length > 0 ? (
-              unansweredIds.map((id, i) => (
+        <div className={unansweredIds.length ? 'dashboard' : 'dashboard-empty'}>
+          <List className='dashboard-list'>
+            {this.state.filtered ? (
+              unansweredIds.length > 0 ? (
+                unansweredIds.map((id, i) => (
+                  <QuestionPreview id={id} key={i}/>
+                ))
+              ): (
+                <div className="no-questions">
+                  <h1>You Have No More Question To Answer</h1>
+                </div>
+              )
+            ) : (
+              questionIds.map((id, i) => (
                 <QuestionPreview id={id} key={i}/>
               ))
-            ): (
-              <div className="no-questions">
-                <h3>You Have No More Question To Answer</h3>
-              </div>
-            )
-          ) : (
-            questionIds.map((id, i) => (
-              <QuestionPreview id={id} key={i}/>
-            ))
-          )}
-        </List>
+            )}
+          </List>
+        </div>
       </div>
     )
   }

@@ -46,7 +46,7 @@ class Login extends Component {
               <em>User</em>
             </MenuItem>
             {Object.values(this.props.users).map((user, i) => (
-              <MenuItem value={user.id} key={i}>
+              <MenuItem value={user.id} key={i} className='user-item'>
                 <ListItemIcon>
                   <Avatar src={user.avatarURL}/>
                 </ListItemIcon>

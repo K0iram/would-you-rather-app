@@ -2,7 +2,15 @@ import { getInitialData, saveQuestion, saveQuestionAnswer } from '../utils/api'
 import { receiveUsers, updateUserAnswers, updateUserQuestions } from '../actions/users'
 import { receiveQuestions, saveAnswer, addQuestion } from '../actions/questions'
 import { loginUser, logoutUser } from '../actions/authedUser'
-import {showLoading, hideLoading} from 'react-redux-loading'
+import { showLoading, hideLoading } from 'react-redux-loading'
+
+const checkForUser = (dispatch) => {
+  const persistedUser = window.localStorage.getItem('user') || null
+
+  if(persistedUser) {
+    dispatch(handleLoginUser(persistedUser))
+  }
+}
 
 export const handleInitialData = () => {
   return (dispatch) => {
@@ -15,14 +23,6 @@ export const handleInitialData = () => {
       })
       .then(() => dispatch(hideLoading()))
   }
-}
-
-const checkForUser = (dispatch) => {
-    const persistedUser = window.localStorage.getItem('user') || null
-
-    if(persistedUser) {
-      dispatch(handleLoginUser(persistedUser))
-    }
 }
 
 export const handleLoginUser = (id) => {

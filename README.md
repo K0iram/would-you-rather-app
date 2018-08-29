@@ -2,11 +2,43 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 # Would You Rather Project
 
-This is the starter code for the final assessment project for Udacity's React & Redux course.
+This is the final assessment project for Udacity's React & Redux course. In this app users can ask and answer
+simple would you rather questions with 2 possible answers. when a question is answered the user sees their
+answer as well as the statistics for that question(number of votes and % of total votes). There is a leaderboard
+that shows the users questions asked and answered that is arranged by whatever user has the most of the 2 combined. This
+Project has a mock api so if the page is reloaded the users data will be lost and the sample data will be reinstated. I did however chose to persist the user in the windows local storage so if the page is reloaded you will not be prompted to log in
+again until you sign out of the current user.
 
-The `_DATA.js` file represents a fake database and methods that let you access the data. The only thing you need to edit in the ` _DATA.js` file is the value of `avatarURL`. Each user should have an avatar, so you’ll need to add the path to each user’s avatar.
+## Get It Running
+To run this project please have yarn or npm installed on your machine and run:
 
-Using the provided starter code, you'll build a React/Redux front end for the application. We recommend using the [Create React App](https://github.com/facebook/create-react-app) to bootstrap the project.
+* `npm install`
+* `npm start`
+#### or
+* `yarn install`
+* `yarn start`
+
+## How It Works
+
+When the app loads a login form is show and the user is prompted to login to start. No other routes are available to the user until they successfully login. One logged in the users avatar and name appear on the top right of the screen in the nav bar.
+in the main dashboard view a list of all the questions the user has not answered yet is shown. A small toggle switch on the top right of the dashboard will show all answered and unanswered questions. Clicking on one the the questions will bring you the that questions page with the url ```question/:questionId``` if unanswered the user is prompted to answer the question and once answered the question will show the users answer and a pie chart with the questions statistics will appear. If the question has been previously answered that view will show automatically.
+
+
+If the user clicks on the avatar in the nav bar a drop down menu will show with the options:
+  * Dashboard - Main View
+  * Ask A Question - Create a new question view
+  * Leaderboard - Leaderboard Table
+  * Log Out - Logs user out and shows the login view
+
+When adding a new question, the user is prompted to enter 2 options. If either of the options are blank the submit button will
+be disabled. Once the user enters the options and clicks submit they will be redirected to the dashboard where their question will appear when the page loads.
+
+When navigating to the leaderboard, a table is show with the current users. The rank is based on the number of questions asked and answered added together. If a user is in the #1 position a star icon is show. This can be tested by answering and asking multiple questions and going back to the leaderboard to see the data change.
+
+If the user tries to go to any url that does not match a described route they will be directed to a danger page telling then this page does not exist and given a back button to direct the user to the home page. If the user is not signed in and tries to navigate to any page other than the root '/' they will be redirected back to the the login.
+
+### Reach Goal
+For the next iteration of this project I would like to implement a real database so that users data will be saved. This would also give the possibility of users having profiles with they're questions and being able to as specific users questions.
 
 ## Data
 

@@ -37,27 +37,30 @@ class Login extends Component {
 
   render() {
     return (
-      <Paper className='login-card'>
-        <h2>Pick A User</h2>
-        <FormControl>
-          <InputLabel>Select a User</InputLabel>
-          <Select onChange={this.onSelectChange} value={this.state.selectedUser} className='login-select'>
-            <MenuItem value="">
-              <em>User</em>
-            </MenuItem>
-            {Object.values(this.props.users).map((user, i) => (
-              <MenuItem value={user.id} key={i} className='user-item'>
-                <ListItemIcon>
-                  <Avatar src={user.avatarURL}/>
-                </ListItemIcon>
-                <ListItemText inset primary={user.name} />
+      <div className="login">
+      <h1>Please Login To Use The App</h1>
+        <Paper className='login-card'>
+          <h2>Pick A User</h2>
+          <FormControl>
+            <InputLabel>Select a User</InputLabel>
+            <Select onChange={this.onSelectChange} value={this.state.selectedUser} className='login-select'>
+              <MenuItem value="">
+                <em>User</em>
               </MenuItem>
-            ))}
-          </Select>
-          <FormHelperText>Choose a user from the list</FormHelperText>
-        </FormControl>
-        <Button variant='contained' color='primary' onClick={this.handleSubmit}>Login</Button>
-      </Paper>
+              {Object.values(this.props.users).map((user, i) => (
+                <MenuItem value={user.id} key={i} className='user-item'>
+                  <ListItemIcon>
+                    <Avatar src={user.avatarURL}/>
+                  </ListItemIcon>
+                  <ListItemText inset primary={user.name} />
+                </MenuItem>
+              ))}
+            </Select>
+            <FormHelperText>Choose a user from the list</FormHelperText>
+          </FormControl>
+          <Button variant='contained' color='primary' onClick={this.handleSubmit}>Login</Button>
+        </Paper>
+      </div>
     )
   }
 }

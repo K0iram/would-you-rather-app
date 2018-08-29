@@ -4,7 +4,7 @@
   margin: 0 auto;
 }
 
-.leaderboard-title {
+.leaderboard {
   text-align: center;
 }
 
@@ -27,4 +27,16 @@
   max-width: 15px !important;
   padding: 0 !important;
   text-align: center!important;
+}
+
+.leaderboard-container {
+  height: 50vh;
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 400px) {
+  .leaderboard-container {
+    padding: 0 10px;
+  }
 }

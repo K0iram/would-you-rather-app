@@ -44,7 +44,7 @@ class App extends Component {
                   </Switch>
                 </div>
               ):(
-                <div>
+                <div className='test'>
                   <Switch>
                     <Route path='/' exact component={Login}/>
                     <Route path='*' component={NotFound}/>

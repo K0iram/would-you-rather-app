@@ -10,9 +10,11 @@ class Leaderboard extends Component {
   render() {
     const {userDetails} = this.props
     return (
-      <div className='leaderboard-title'>
+      <div className='leaderboard'>
         <h1>OFFICIAL LEADERBOARD</h1>
-        <LeaderTable users={userDetails}/>
+        <div className="leaderboard-container">
+          <LeaderTable users={userDetails}/>
+        </div>
       </div>
     )
   }

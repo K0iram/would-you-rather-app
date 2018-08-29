@@ -34,38 +34,40 @@ class NewQuestion extends Component {
 
   render() {
     return (
-      <div className='new-question'>
+      <div className='new-question-container'>
         <h1>Add A New Question!</h1>
-        <Paper className='new-question-card'>
-          <h3>Would You Rather:</h3>
-          <Input
-            value={this.state.questionOne}
-            name='questionOne'
-            placeholder='Question One'
-            onChange={this.questionInputChange}
-            inputProps={{
-              'aria-label': 'Question One',
-            }}
-          />
-          <h5>OR</h5>
-          <Input
-            value={this.state.questionTwo}
-            name='questionTwo'
-            placeholder='Question Two'
-            onChange={this.questionInputChange}
-            inputProps={{
-              'aria-label': 'Question Two',
-            }}
-          />
-          <Button
-            variant='contained'
-            color='primary'
-            disabled={this.state.questionOne === '' || this.state.questionTwo === ''}
-            onClick={this.handleSubmit}
-          >
-            Submit
-          </Button>
-        </Paper>
+        <div className="new-question">
+          <Paper className='new-question-card'>
+            <h3>Would You Rather:</h3>
+            <Input
+              value={this.state.questionOne}
+              name='questionOne'
+              placeholder='Question One'
+              onChange={this.questionInputChange}
+              inputProps={{
+                'aria-label': 'Question One',
+              }}
+            />
+            <h5>OR</h5>
+            <Input
+              value={this.state.questionTwo}
+              name='questionTwo'
+              placeholder='Question Two'
+              onChange={this.questionInputChange}
+              inputProps={{
+                'aria-label': 'Question Two',
+              }}
+            />
+            <Button
+              variant='contained'
+              color='primary'
+              disabled={this.state.questionOne === '' || this.state.questionTwo === ''}
+              onClick={this.handleSubmit}
+            >
+              Submit
+            </Button>
+          </Paper>
+        </div>
       </div>
     )
   }

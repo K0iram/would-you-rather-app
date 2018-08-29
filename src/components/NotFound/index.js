@@ -8,18 +8,18 @@ import './style.css'
 class NotFound extends Component {
 
   render() {
-    const { authedUser } = this.props
-    if(!authedUser) {
+    const isAuthed = !!window.localStorage.user
+    if(isAuthed) {
       return (
-        <div>
-          <Redirect to='/' />
+        <div className='message-container'>
+          <h1>PAGE NOT FOUND</h1>
+          <Link to='/'>Please Go Home</Link>
         </div>
       )
     } else {
       return (
         <div>
-          <h1>PAGE NOT FOUND</h1>
-          <Link to='/'>Please Go Home</Link>
+          <Redirect to='/' />
         </div>
       )
     }

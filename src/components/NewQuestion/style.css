@@ -10,8 +10,14 @@
   justify-content: space-between;
 }
 
-.new-question h1 {
+.new-question-container h1 {
   text-align: center;
+}
+
+.new-question {
+  height: 50vh;
+  display: flex;
+  align-items: center;
 }
 
 @media(max-width: 450px) {

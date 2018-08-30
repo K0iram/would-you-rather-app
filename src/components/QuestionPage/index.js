@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Question from '../Question'
@@ -9,16 +9,16 @@ import { PieChart, Legend } from 'react-easy-chart'
 import './style.css'
 
 
-class QuestionPage extends Component {
+const QuestionPage = (props) => {
 
-  render() {
-    const { question, authedQuestion, user, isAnswered, optionOnePercentage, optionTwoPercentage } = this.props
+  const {authedQuestion} = props
+  if(!authedQuestion) {
+    return (
+      <Redirect to='/not_found'/>
+    )
+  } else {
+    const { question, user, isAnswered, optionOnePercentage, optionTwoPercentage} = props
     const { optionOne, optionTwo } = question
-
-    if(!authedQuestion) {
-      return <Redirect to='/not_found'/>
-    }
-
     const optOneLength = optionOne.votes.length
     const optTwoLength = optionTwo.votes.length
     const optOneString = `${optionOne.text} - ${optOneLength > 1 ? `${optOneLength} Votes` : `${optOneLength} Vote`} - ${optionOnePercentage}%`
@@ -71,34 +71,43 @@ class QuestionPage extends Component {
   }
 }
 
-const mapStateToProps = ({authedUser, users, questions}, props) => {
-  const { questionId } = props.match.params
-  const question = questions[questionId]
-  const isQuestion = Object.keys(questions).includes(questionId)
-  const user = users[authedUser.id]
-  const isAnswered = Object.keys(user.answers).includes(questionId)
-  const totalVotes = question.optionOne.votes.length + question.optionTwo.votes.length
+  const mapStateToProps = ({authedUser, users, questions}, props) => {
+    const { questionId } = props.match.params
+    const isQuestion = Object.keys(questions).includes(questionId)
 
-  return {
-    authedQuestion: isQuestion,
-    isAnswered,
-    user: user,
-    question: {
-      id: questionId,
-      author: users[question.author],
-      optionOne: {
-        votes: question.optionOne.votes,
-        text: question.optionOne.text.toUpperCase()
-      },
-      optionTwo: {
-        votes: question.optionTwo.votes,
-        text: question.optionTwo.text.toUpperCase()
-      },
-      date: question.timestamp
-    },
-    optionOnePercentage: Math.floor((question.optionOne.votes.length / totalVotes) * 100),
-    optionTwoPercentage: Math.floor((question.optionTwo.votes.length / totalVotes) * 100)
+    if(isQuestion) {
+      const question = questions[questionId]
+      const user = users[authedUser.id]
+      const isAnswered = Object.keys(user.answers).includes(questionId)
+      const totalVotes = question.optionOne.votes.length + question.optionTwo.votes.length
+
+      return {
+        isAnswered,
+        authedQuestion: isQuestion,
+        user: user,
+        question: {
+          id: questionId,
+          author: users[question.author],
+          optionOne: {
+            votes: question.optionOne.votes,
+            text: question.optionOne.text.toUpperCase()
+          },
+          optionTwo: {
+            votes: question.optionTwo.votes,
+            text: question.optionTwo.text.toUpperCase()
+          },
+          date: question.timestamp
+        },
+        optionOnePercentage: Math.floor((question.optionOne.votes.length / totalVotes) * 100),
+        optionTwoPercentage: Math.floor((question.optionTwo.votes.length / totalVotes) * 100)
+      }
+    } else {
+      return {
+        authedQuestion: isQuestion
+      }
+    }
   }
-}
+
+
 
 export default connect(mapStateToProps)(QuestionPage)

@@ -27,7 +27,7 @@ class Nav extends Component {
     },
     {
       name: 'Ask A Question',
-      path: '/new_question'
+      path: '/add'
     },
     {
       name: 'Leaderboard',

@@ -8,8 +8,8 @@ import './style.css'
 
 class Logout extends Component {
   componentDidMount() {
-    const {dispatch} = this.props
-    dispatch(handleLogoutUser())
+    const { onLogOut } = this.props
+    onLogOut()
     localStorage.clear()
   }
 
@@ -20,4 +20,16 @@ class Logout extends Component {
   }
 }
 
-export default connect()(Logout)
+const mapStateToProps = ({dispatch}) => {
+  return {
+    dispatch
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onLogOut: () => dispatch(handleLogoutUser())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Logout)

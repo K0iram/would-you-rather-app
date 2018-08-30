@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import moment from 'moment'
 import Avatar from '@material-ui/core/Avatar'
@@ -12,10 +12,9 @@ import { Link } from 'react-router-dom'
 import './style.css'
 
 
-class QuestionPreview extends Component {
+const QuestionPreview = (props) => {
 
-  render() {
-    const { question, user } = this.props
+    const { question, user } = props
     const { author, optionOne, optionTwo, date, id } = question
     const isAnswered = Object.keys(user.answers).includes(id)
 
@@ -39,7 +38,6 @@ class QuestionPreview extends Component {
         )}
       </Paper>
     )
-  }
 }
 
 const mapStateToProps = ({authedUser, users, questions}, { id }) => {

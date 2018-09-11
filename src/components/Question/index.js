@@ -16,16 +16,17 @@ const Question = (props) => {
 
   const handleAnswer = (option) => {
     const { onSubmitAnswer, user, question } = props
-    const { id, optionOne, optionTwo } = question
-    if(optionOne.text === option.text) {
-      onSubmitAnswer(user.id, id, 'optionOne')
-    } else if (optionTwo.text === option.text) {
-      onSubmitAnswer(user.id, id, 'optionTwo')
-    }
+    const { id, optionOne} = question
+    const selectedOption = optionOne.text === option.text
+      ? 'optionOne'
+      : 'optionTwo'
+
+    onSubmitAnswer(user.id, id, selectedOption)
   }
 
   const { question, user} = props
   const { author, optionOne, optionTwo, date, id } = question
+  const hasAnsweredQuestion = user.answers.hasOwnProperty(id)
 
   return (
     <div>
@@ -34,7 +35,7 @@ const Question = (props) => {
           <Avatar src={author.avatarURL}/>
           <ListItemText primary={author.name} secondary={moment(date).format('ll')} />
         </div>
-        {user.answers.hasOwnProperty(id) ? (
+        {hasAnsweredQuestion ? (
           <div className='question-card__answered pullDown' id='flip' >
               <h5>Would You Rather</h5>
               <p>{optionOne.text} <strong>or</strong> {optionTwo.text}</p>
@@ -44,7 +45,7 @@ const Question = (props) => {
           ) : (
           <div className='question-card__questions pullDown'>
             <h5>Would You Rather</h5>
-            <Button onClick={() => handleAnswer(optionOne)}variant='outlined' color='primary'>
+            <Button onClick={() => handleAnswer(optionOne)} variant='outlined' color='primary'>
               {optionOne.text}
             </Button>
             <p>or</p>

@@ -10,65 +10,59 @@ import './style.css'
 
 
 const QuestionPage = (props) => {
+  const { question, user, isAnswered, optionOnePercentage, optionTwoPercentage, authedQuestion } = props
+  if(!authedQuestion) return <Redirect to='/not_found'/>
 
-  const {authedQuestion} = props
-  if(!authedQuestion) {
-    return (
-      <Redirect to='/not_found'/>
-    )
-  } else {
-    const { question, user, isAnswered, optionOnePercentage, optionTwoPercentage} = props
-    const { optionOne, optionTwo } = question
-    const optOneLength = optionOne.votes.length
-    const optTwoLength = optionTwo.votes.length
-    const optOneString = `${optionOne.text} - ${optOneLength > 1 ? `${optOneLength} Votes` : `${optOneLength} Vote`} - ${optionOnePercentage}%`
-    const optTwoString = `${optionTwo.text} - ${optTwoLength > 1 ? `${optTwoLength} Votes` : `${optTwoLength} Vote`} - ${optionTwoPercentage}%`
-    const noVotes = `${optionTwo.text} - No Votes`
+  const { optionOne, optionTwo } = question
+  const optOneLength = optionOne.votes.length
+  const optTwoLength = optionTwo.votes.length
+  const optOneString = `${optionOne.text} - ${optOneLength > 1 ? `${optOneLength} Votes` : `${optOneLength} Vote`} - ${optionOnePercentage}%`
+  const optTwoString = `${optionTwo.text} - ${optTwoLength > 1 ? `${optTwoLength} Votes` : `${optTwoLength} Vote`} - ${optionTwoPercentage}%`
+  const noVotes = `${optionTwo.text} - No Votes`
 
 
-    const chartData = [
-      {
-        key: optOneLength <= 0 ? (noVotes) : (optOneString),
-        value: optionOne.votes.length,
-        color: '#3f51b5'
-       },
-      {
-        key: optTwoLength <= 0 ? (noVotes) : (optTwoString),
-        value: optionTwo.votes.length,
-        color: '#74c474'
+  const chartData = [
+    {
+      key: optOneLength <= 0 ? (noVotes) : (optOneString),
+      value: optionOne.votes.length,
+      color: '#3f51b5'
+     },
+    {
+      key: optTwoLength <= 0 ? (noVotes) : (optTwoString),
+      value: optionTwo.votes.length,
+      color: '#74c474'
+    }
+  ]
+
+   const config = [
+    {color: '#3f51b5'},
+    {color: '#74c474'}
+  ]
+
+  return (
+    <div className={isAnswered ? 'question-container with-results pullDown' : 'question-container'}>
+      <Link to='/'>
+        <div className='question-container__back'>
+          <Icon><KeyboardArrowLeft/></Icon>
+          <p>Back To All Questions</p>
+        </div>
+      </Link>
+      <Question question={question} user={user}/>
+      {isAnswered &&
+        <div className='results'>
+          <PieChart
+            size={200}
+            innerHoleSize={100}
+            data={chartData}
+          />
+          <div>
+            <h4>All Results:</h4>
+            <Legend data={chartData} dataId={'key'} config={config}/>
+          </div>
+        </div>
       }
-    ]
-
-     const config = [
-      {color: '#3f51b5'},
-      {color: '#74c474'}
-    ]
-
-    return (
-      <div className={isAnswered ? 'question-container with-results pullDown' : 'question-container'}>
-        <Link to='/'>
-          <div className='question-container__back'>
-            <Icon><KeyboardArrowLeft/></Icon>
-            <p>Back To All Questions</p>
-          </div>
-        </Link>
-        <Question question={question} user={user}/>
-        {isAnswered &&
-          <div className='results'>
-            <PieChart
-              size={200}
-              innerHoleSize={100}
-              data={chartData}
-            />
-            <div>
-              <h4>All Results:</h4>
-              <Legend data={chartData} dataId={'key'} config={config}/>
-            </div>
-          </div>
-        }
-      </div>
-    )
-  }
+    </div>
+  )
 }
 
   const mapStateToProps = ({authedUser, users, questions}, props) => {

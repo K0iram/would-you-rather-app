@@ -29,7 +29,6 @@ If the user clicks on the avatar in the nav bar a drop down menu will show with 
   * Ask A Question - Create a new question view
   * Leaderboard - Leaderboard Table
   * Log Out - Logs user out and shows the login view
-
 When adding a new question, the user is prompted to enter 2 options. If either of the options are blank the submit button will
 be disabled. Once the user enters the options and clicks submit they will be redirected to the dashboard where their question will appear when the page loads.
 

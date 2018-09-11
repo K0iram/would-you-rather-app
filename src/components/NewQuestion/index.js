@@ -10,7 +10,7 @@ import './style.css'
 
 
 class NewQuestion extends Component {
-  state={
+  state = {
     questionOne: '',
     questionTwo: ''
   }
@@ -24,11 +24,9 @@ class NewQuestion extends Component {
   handleSubmit = () => {
     const {questionOne, questionTwo} = this.state
     const { onSubmitQuestion, history } = this.props
+
     onSubmitQuestion(questionOne, questionTwo)
-    this.setState({
-      questionOne: '',
-      questionTwo: ''
-    })
+
     return history.push('/')
   }
 

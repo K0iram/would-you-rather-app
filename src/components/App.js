@@ -16,6 +16,7 @@ import NotFound from './NotFound'
 class App extends Component {
   componentDidMount() {
     const { onReceiveData } = this.props
+
     onReceiveData()
   }
 

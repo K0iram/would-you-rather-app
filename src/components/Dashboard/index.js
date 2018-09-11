@@ -15,7 +15,7 @@ class Dashboard extends Component {
   }
 
   handleChange = () => {
-    this.setState({filtered: !this.state.filtered})
+    this.setState({ filtered: !this.state.filtered })
   }
 
   render() {
@@ -23,6 +23,7 @@ class Dashboard extends Component {
     const { filtered } = this.state
     return (
       <div>
+
         <FormGroup className='dashboard-filter'>
           <FormControlLabel
             control={
@@ -32,6 +33,7 @@ class Dashboard extends Component {
             className='dashboard-filter__label'
           />
         </FormGroup>
+
         <div className={unansweredIds.length ? 'dashboard' : 'dashboard-empty'}>
           <List className='dashboard-list'>
             {this.state.filtered ? (

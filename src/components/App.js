@@ -15,9 +15,7 @@ import NotFound from './NotFound'
 
 class App extends Component {
   componentDidMount() {
-    const { onReceiveData } = this.props
-
-    onReceiveData()
+    this.props.onReceiveData()
   }
 
   render() {
@@ -32,7 +30,7 @@ class App extends Component {
             <div>
             {loading ? (
               null
-            ): (
+            ) : (
               signedIn ? (
                 <div>
                   <Switch>

@@ -1,7 +1,15 @@
 .message-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-  height: 50vh;
+  height: 40vh;
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 25px;
+}
+
+.message-container a {
+  text-decoration: none;
 }

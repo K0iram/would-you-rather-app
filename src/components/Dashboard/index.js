@@ -15,7 +15,9 @@ class Dashboard extends Component {
   }
 
   handleChange = () => {
-    this.setState({ filtered: !this.state.filtered })
+    this.setState(prevState => ({
+      filtered: !prevState.filtered
+    }))
   }
 
   render() {
@@ -38,8 +40,8 @@ class Dashboard extends Component {
           <List className='dashboard-list'>
             {this.state.filtered ? (
               unansweredIds.length > 0 ? (
-                unansweredIds.map((id, i) => (
-                  <QuestionPreview id={id} key={i}/>
+                unansweredIds.map((id) => (
+                  <QuestionPreview id={id} key={id}/>
                 ))
               ): (
                 <div className="no-questions">
@@ -47,8 +49,8 @@ class Dashboard extends Component {
                 </div>
               )
             ) : (
-              questionIds.map((id, i) => (
-                <QuestionPreview id={id} key={i}/>
+              questionIds.map((id) => (
+                <QuestionPreview id={id} key={id}/>
               ))
             )}
           </List>

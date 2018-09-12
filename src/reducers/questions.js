@@ -1,4 +1,8 @@
-import { RECEIVE_QUESTIONS, ADD_QUESTION, ANSWER_QUESTION } from '../actions/questions'
+import {
+  RECEIVE_QUESTIONS,
+  ADD_QUESTION,
+  ANSWER_QUESTION
+} from '../actions/actionTypes'
 
 
 const questions = (state = {}, action) => {

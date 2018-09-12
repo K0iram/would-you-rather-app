@@ -21,7 +21,7 @@ export const handleInitialData = () => {
         dispatch(receiveUsers(users))
         checkForUser(dispatch)
       })
-      .then(() => dispatch(hideLoading()))
+      .finally(() => dispatch(hideLoading()))
   }
 }
 

@@ -1,5 +1,7 @@
-export const LOGIN_USER = 'LOGIN_USER'
-export const LOG_OUT_USER = 'LOG_OUT_USER'
+import {
+  LOGIN_USER,
+  LOG_OUT_USER
+} from './actionTypes'
 
 export const loginUser = (user) => {
   return {

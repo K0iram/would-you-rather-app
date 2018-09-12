@@ -1,5 +1,3 @@
-'https://s3.amazonaws.com/mariosbucket/Udacity_Avatars/girl.png'
-
 let users = {
   sarahedo: {
     id: 'sarahedo',

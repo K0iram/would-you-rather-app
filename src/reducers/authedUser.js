@@ -1,4 +1,7 @@
-import { LOGIN_USER, LOG_OUT_USER} from '../actions/authedUser'
+import {
+  LOGIN_USER,
+  LOG_OUT_USER
+} from '../actions/actionTypes'
 
 
 const authedUser = (state = null, action) => {

@@ -1,6 +1,8 @@
-export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
-export const ADD_QUESTION = 'ADD_QUESTION'
-export const ANSWER_QUESTION = 'ANSWER_QUESTION'
+import {
+  RECEIVE_QUESTIONS,
+  ADD_QUESTION,
+  ANSWER_QUESTION
+} from './actionTypes'
 
 
 export const receiveQuestions = (questions) => {

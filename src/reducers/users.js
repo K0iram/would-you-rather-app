@@ -1,4 +1,8 @@
-import { RECEIVE_USERS, UPDATE_USER_ANSWERS, UPDATE_USER_QUESTIONS } from '../actions/users'
+import {
+  RECEIVE_USERS,
+  UPDATE_USER_ANSWERS,
+  UPDATE_USER_QUESTIONS
+} from '../actions/actionTypes'
 
 
 const users = (state = {}, action) => {
